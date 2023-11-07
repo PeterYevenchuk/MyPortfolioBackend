@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using MyPortfolio.Core.Context;
+
 namespace MyPortfolio.WebAPI;
 
 public class Program
@@ -5,6 +8,9 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+
+        builder.Services.AddDbContext<MyPortfolioDbContext>(
+            d => d.UseNpgsql(builder.Configuration.GetConnectionString("SqlConnectionString")));
 
         builder.Services.AddControllers();
 
