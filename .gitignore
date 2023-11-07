@@ -398,4 +398,4 @@ FodyWeavers.xsd
 *.sln.iml
 
 # Migrations
-MyPortfolio.Core/Migrations
+MyPortfolio.WebAPI/MyPortfolio.Core/Migrations
