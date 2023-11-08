@@ -145,8 +145,8 @@ namespace MyPortfolio.Core.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("character varying(1000)");
+                        .HasMaxLength(5000)
+                        .HasColumnType("character varying(5000)");
 
                     b.Property<string>("Location")
                         .IsRequired()
@@ -176,6 +176,19 @@ namespace MyPortfolio.Core.Migrations
                     b.HasKey("AboutMeID");
 
                     b.ToTable("AboutMe", "public");
+
+                    b.HasData(
+                        new
+                        {
+                            AboutMeID = 1,
+                            Age = (byte)22,
+                            Description = "On my portfolio site, I present myself as a highly skilled .NET developer ready to contribute significantly to your projects. I have more than 1.5 years of experience in C# and more than a year of experience as a .NET backend developer. In addition, I have successfully worked as a full-stack developer (.NET + React) for the past six months, which enhances my effectiveness in teamwork and provides a wider range of skills.\r\n\r\nMy strengths include the ability to write maintainable code according to best practices, developed analytical thinking, responsibility in the execution of tasks and effective time management. My adaptability allows me to work effectively both remotely and in the office, ensuring productivity and communication with the team regardless of location.\r\n\r\nThanks to my versatile experience and skills, I am always ready to take on new challenges. On my portfolio site, you can learn more about my work achievements and examples of projects that I have successfully completed. I will be happy to cooperate.",
+                            Location = "Ukraine",
+                            Name = "Petro",
+                            PhotoMeUrl = "photo-me.jpg",
+                            Position = ".Net Developer",
+                            Surname = "Yevenchuk"
+                        });
                 });
 
             modelBuilder.Entity("MyPortfolio.Core.Projects.Project", b =>

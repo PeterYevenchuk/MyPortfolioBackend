@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyPortfolio.Core.Certificates;
 using MyPortfolio.Core.Context.DBConfiguration;
+using MyPortfolio.Core.Context.Seeds;
 using MyPortfolio.Core.Educations;
 using MyPortfolio.Core.Experiences;
 using MyPortfolio.Core.InfoAboutMe;
@@ -33,5 +34,7 @@ public class MyPortfolioDbContext : DbContext
         modelBuilder.ApplyConfiguration(new SocialLinkConfiguration());
         modelBuilder.ApplyConfiguration(new ProjectConfiguration());
         modelBuilder.ApplyConfiguration(new EducationConfiguration());
+
+        DataSeeder.SeedData(modelBuilder);
     }
 }

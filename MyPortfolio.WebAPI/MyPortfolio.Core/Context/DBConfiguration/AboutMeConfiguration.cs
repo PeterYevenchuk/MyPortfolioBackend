@@ -39,7 +39,7 @@ public class AboutMeConfiguration : IEntityTypeConfiguration<AboutMe>
             .IsRequired();
 
         builder.Property(a => a.Description)
-            .HasMaxLength(1000)
+            .HasMaxLength(5000)
             .IsRequired();
     }
 }

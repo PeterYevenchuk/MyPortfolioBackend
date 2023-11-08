@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using MyPortfolio.Core;
 using MyPortfolio.Core.Context;
 
 namespace MyPortfolio.WebAPI;
@@ -11,6 +12,8 @@ public class Program
 
         builder.Services.AddDbContext<MyPortfolioDbContext>(
             d => d.UseNpgsql(builder.Configuration.GetConnectionString("SqlConnectionString")));
+
+        CoreServiceConfiguration.ConfigureServices(builder.Services);
 
         builder.Services.AddControllers();
 
