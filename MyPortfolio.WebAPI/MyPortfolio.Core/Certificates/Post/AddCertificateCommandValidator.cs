@@ -8,5 +8,6 @@ public class AddCertificateCommandValidator : AbstractValidator<AddCertificateCo
     {
         RuleFor(u => u).NotEmpty();
         RuleFor(u => u.CertificatePdf).NotEmpty().NotNull();
+        RuleFor(u => u.AboutMeID).NotEmpty().NotNull().GreaterThan(0);
     }
 }

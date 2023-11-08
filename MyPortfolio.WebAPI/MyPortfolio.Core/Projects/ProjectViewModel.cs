@@ -2,6 +2,8 @@
 
 public class ProjectViewModel
 {
+    public int ProjectID { get; set; }
+
     public string Name { get; set; }
 
     public string PhotoProjectUrl { get; set; }

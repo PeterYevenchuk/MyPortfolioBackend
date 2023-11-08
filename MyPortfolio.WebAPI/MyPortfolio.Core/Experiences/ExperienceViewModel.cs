@@ -2,6 +2,8 @@
 
 public class ExperienceViewModel
 {
+    public int ExperienceID { get; set; }
+
     public string Place { get; set; }
 
     public string Company { get; set; }

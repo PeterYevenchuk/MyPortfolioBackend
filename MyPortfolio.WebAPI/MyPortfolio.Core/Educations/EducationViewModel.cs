@@ -2,6 +2,8 @@
 
 public class EducationViewModel
 {
+    public int EducationID { get; set; }
+
     public string Rang { get; set; }
 
     public string Speciality { get; set; }
