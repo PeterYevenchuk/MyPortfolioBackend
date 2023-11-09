@@ -13,6 +13,5 @@ public class AddEducationCommandValidator : AbstractValidator<AddEducationComman
         RuleFor(u => u.Description).NotEmpty().NotNull();
         RuleFor(u => u.AboutMeID).NotEmpty().NotNull().GreaterThan(0);
         RuleFor(u => u.DateStart).NotEmpty().NotNull();
-        RuleFor(u => u.DateFinish).NotEmpty().NotNull();
     }
 }

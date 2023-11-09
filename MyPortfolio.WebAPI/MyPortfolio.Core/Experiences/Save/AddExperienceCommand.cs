@@ -1,9 +1,9 @@
-﻿namespace MyPortfolio.Core.Experiences;
+﻿using MediatR;
 
-public class ExperienceViewModel
+namespace MyPortfolio.Core.Experiences.Save;
+
+public class AddExperienceCommand : IRequest<Unit>
 {
-    public int ExperienceID { get; set; }
-
     public string Place { get; set; }
 
     public string Company { get; set; }
@@ -17,4 +17,6 @@ public class ExperienceViewModel
     public DateOnly? DateFinish { get; set; }
 
     public string Description { get; set; }
+
+    public int AboutMeID { get; set; }
 }

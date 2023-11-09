@@ -1,27 +1,24 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using MyPortfolio.Core.Certificates;
 using MyPortfolio.Core.Context;
 using MyPortfolio.Core.Experiences;
-using MyPortfolio.Core.InfoAboutMe;
-using MyPortfolio.Core.SocialLinks;
 using System.Data;
 
-namespace MyPortfolio.Core.Educations.Save;
+namespace MyPortfolio.Core.Skills.Save;
 
-public class AddEducationCommandHandler : IRequestHandler<AddEducationCommand, Unit>
+public class AddSkillCommandHandler : IRequestHandler<AddSkillCommand, Unit>
 {
     private readonly MyPortfolioDbContext _context;
     private readonly IMapper _mapper;
 
-    public AddEducationCommandHandler(MyPortfolioDbContext context, IMapper mapper)
+    public AddSkillCommandHandler(MyPortfolioDbContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;
     }
 
-    public async Task<Unit> Handle(AddEducationCommand request, CancellationToken cancellationToken)
+    public async Task<Unit> Handle(AddSkillCommand request, CancellationToken cancellationToken)
     {
         var info = await _context.AboutMe.FirstOrDefaultAsync(a => a.AboutMeID == request.AboutMeID);
 
@@ -34,9 +31,9 @@ public class AddEducationCommandHandler : IRequestHandler<AddEducationCommand, U
 
         try
         {
-            var education = _mapper.Map<Education>(request);
+            var skill = _mapper.Map<Skill>(request);
 
-            _context.Educations.Add(education);
+            _context.Skills.Add(skill);
 
             await _context.SaveChangesAsync();
 
@@ -47,7 +44,7 @@ public class AddEducationCommandHandler : IRequestHandler<AddEducationCommand, U
         catch (Exception ex)
         {
             await transaction.RollbackAsync();
-            throw new Exception($"An error occurred while saving the education: {ex.Message}", ex);
+            throw new Exception($"An error occurred while saving the skill: {ex.Message}", ex);
         }
     }
 }

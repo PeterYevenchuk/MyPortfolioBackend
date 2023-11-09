@@ -2,7 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using MyPortfolio.Core.Certificates.Post;
 using MyPortfolio.Core.Educations.Save;
+using MyPortfolio.Core.Experiences.Save;
 using MyPortfolio.Core.InfoAboutMe.ChangeInfo;
+using MyPortfolio.Core.Projects.Save;
+using MyPortfolio.Core.Skills.Save;
+using MyPortfolio.Core.SocialLinks.Save;
 
 namespace MyPortfolio.WebAPI.Controllers;
 
@@ -31,6 +35,38 @@ public class AdminController : ControllerBase
         await _mediator.Send(request);
 
         return Ok("The education was created successfully.");
+    }
+
+    [HttpPost("experience")]
+    public async Task<IActionResult> AddExperience(AddExperienceCommand request)
+    {
+        await _mediator.Send(request);
+
+        return Ok("The experience was created successfully.");
+    }
+
+    [HttpPost("project")]
+    public async Task<IActionResult> AddProject([FromForm] AddProjectCommand request)
+    {
+        await _mediator.Send(request);
+
+        return Ok("The project was created successfully.");
+    }
+
+    [HttpPost("skill")]
+    public async Task<IActionResult> AddSkill(AddSkillCommand request)
+    {
+        await _mediator.Send(request);
+
+        return Ok("The skill was created successfully.");
+    }
+
+    [HttpPost("social-link")]
+    public async Task<IActionResult> AddSocialLinkl(AddSocialLinkCommand request)
+    {
+        await _mediator.Send(request);
+
+        return Ok("The social link was created successfully.");
     }
 
     [HttpPatch("change-my-info")]

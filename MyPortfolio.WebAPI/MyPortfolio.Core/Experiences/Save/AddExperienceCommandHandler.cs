@@ -1,27 +1,30 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using MyPortfolio.Core.Certificates;
 using MyPortfolio.Core.Context;
-using MyPortfolio.Core.Experiences;
-using MyPortfolio.Core.InfoAboutMe;
-using MyPortfolio.Core.SocialLinks;
+using MyPortfolio.Core.Educations;
+using MyPortfolio.Core.Projects;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace MyPortfolio.Core.Educations.Save;
+namespace MyPortfolio.Core.Experiences.Save;
 
-public class AddEducationCommandHandler : IRequestHandler<AddEducationCommand, Unit>
+public class AddExperienceCommandHandler : IRequestHandler<AddExperienceCommand, Unit>
 {
     private readonly MyPortfolioDbContext _context;
     private readonly IMapper _mapper;
 
-    public AddEducationCommandHandler(MyPortfolioDbContext context, IMapper mapper)
+    public AddExperienceCommandHandler(MyPortfolioDbContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;
     }
 
-    public async Task<Unit> Handle(AddEducationCommand request, CancellationToken cancellationToken)
+    public async Task<Unit> Handle(AddExperienceCommand request, CancellationToken cancellationToken)
     {
         var info = await _context.AboutMe.FirstOrDefaultAsync(a => a.AboutMeID == request.AboutMeID);
 
@@ -34,9 +37,9 @@ public class AddEducationCommandHandler : IRequestHandler<AddEducationCommand, U
 
         try
         {
-            var education = _mapper.Map<Education>(request);
+            var experience = _mapper.Map<Experience>(request);
 
-            _context.Educations.Add(education);
+            _context.Experiences.Add(experience);
 
             await _context.SaveChangesAsync();
 
@@ -47,7 +50,7 @@ public class AddEducationCommandHandler : IRequestHandler<AddEducationCommand, U
         catch (Exception ex)
         {
             await transaction.RollbackAsync();
-            throw new Exception($"An error occurred while saving the education: {ex.Message}", ex);
+            throw new Exception($"An error occurred while saving the experience: {ex.Message}", ex);
         }
     }
 }

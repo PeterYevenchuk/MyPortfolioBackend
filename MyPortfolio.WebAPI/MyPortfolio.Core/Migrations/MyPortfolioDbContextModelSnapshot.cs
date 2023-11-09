@@ -125,6 +125,11 @@ namespace MyPortfolio.Core.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
 
+                    b.Property<string>("Rang")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
                     b.HasKey("ExperienceID");
 
                     b.HasIndex("AboutMeID");

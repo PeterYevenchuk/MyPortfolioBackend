@@ -41,13 +41,13 @@ public class AddCertificateCommandHandler : IRequestHandler<AddCertificateComman
             await _context.SaveChangesAsync();
 
             await transaction.CommitAsync();
+
+            return Unit.Value;
         }
         catch (Exception ex)
         {
             await transaction.RollbackAsync();
             throw new Exception($"An error occurred while saving the certificate: {ex.Message}", ex);
         }
-
-        return Unit.Value;
     }
 }

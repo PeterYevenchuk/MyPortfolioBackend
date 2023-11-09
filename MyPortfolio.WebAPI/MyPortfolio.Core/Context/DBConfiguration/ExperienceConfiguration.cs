@@ -24,7 +24,11 @@ internal class ExperienceConfiguration : IEntityTypeConfiguration<Experience>
 
         builder.Property(e => e.Position)
             .HasMaxLength(255) 
-            .IsRequired(); 
+            .IsRequired();
+
+        builder.Property(e => e.Rang)
+            .HasMaxLength(255)
+            .IsRequired();
 
         builder.Property(e => e.DateStart)
             .HasColumnType("date") 

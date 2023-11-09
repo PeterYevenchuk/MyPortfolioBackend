@@ -16,6 +16,8 @@ public class Experience
 
     public string Position { get; set; }
 
+    public string Rang {  get; set; }
+
     public DateOnly DateStart { get; set; }
 
     public DateOnly? DateFinish { get; set;}

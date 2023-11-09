@@ -1,13 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using MyPortfolio.Core.Certificates;
 using MyPortfolio.Core.Context;
-using MyPortfolio.Core.Educations;
-using MyPortfolio.Core.Experiences;
-using MyPortfolio.Core.Projects;
-using MyPortfolio.Core.Skills;
-using MyPortfolio.Core.SocialLinks;
 
 namespace MyPortfolio.Core.InfoAboutMe.ChangeInfo;
 
