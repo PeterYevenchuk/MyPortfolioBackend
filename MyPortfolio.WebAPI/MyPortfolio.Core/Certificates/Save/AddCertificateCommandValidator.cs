@@ -6,7 +6,7 @@ public class AddCertificateCommandValidator : AbstractValidator<AddCertificateCo
 {
     public AddCertificateCommandValidator()
     {
-        RuleFor(u => u).NotEmpty();
+        RuleFor(u => u).NotEmpty().NotNull();
         RuleFor(u => u.CertificatePdf).NotEmpty().NotNull();
         RuleFor(u => u.AboutMeID).NotEmpty().NotNull().GreaterThan(0);
     }

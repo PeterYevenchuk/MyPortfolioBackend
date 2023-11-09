@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MyPortfolio.Core.Certificates;
 using MyPortfolio.Core.Educations;
+using MyPortfolio.Core.Educations.Save;
 using MyPortfolio.Core.Experiences;
 using MyPortfolio.Core.InfoAboutMe;
 using MyPortfolio.Core.Projects;
@@ -34,5 +35,7 @@ public class CoreMappingsProfile : Profile
         CreateMap<Education, EducationViewModel>();
 
         CreateMap<Certificate, CertificateViewModel>();
+
+        CreateMap<AddEducationCommand, Education>();
     }
 }
