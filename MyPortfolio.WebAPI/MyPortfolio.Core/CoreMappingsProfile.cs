@@ -31,8 +31,7 @@ public class CoreMappingsProfile : Profile
 
         CreateMap<Skill, SkillViewModel>();
 
-        CreateMap<Project, ProjectViewModel>()
-            .ForMember(dest => dest.PhotoProjectUrl, opt => opt.Ignore());
+        CreateMap<Project, ProjectViewModel>();
 
         CreateMap<Experience, ExperienceViewModel>();
 

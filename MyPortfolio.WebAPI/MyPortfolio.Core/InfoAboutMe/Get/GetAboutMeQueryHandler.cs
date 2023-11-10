@@ -24,37 +24,58 @@ public class GetAboutMeQueryHandler : IRequestHandler<GetAboutMeQuery, AboutMeVi
 
     public async Task<AboutMeViewModel> Handle(GetAboutMeQuery request, CancellationToken cancellationToken)
     {
-        string photoFolderPath = "wwwroot/images";
-        string base64MePhoto = "";
-
-        var info = await _context.AboutMe.FirstOrDefaultAsync();
+        var info = await _context.AboutMe
+            .Include(a => a.SocialLinks)
+            .Include(a => a.Skills)
+            .Include(a => a.Projects)
+            .Include(a => a.Experiences)
+            .Include(a => a.Educations)
+            .Include(a => a.Certificates)
+            .FirstOrDefaultAsync();
 
         if (info == null)
         {
             throw new ArgumentException("Not found!");
         }
 
-        string mePhotoFilePath = Path.Combine(photoFolderPath, info.PhotoMeUrl);
+        var result = _mapper.Map<AboutMeViewModel>(info);
+        result.PhotoMeUrl = ConvertingPhoto(info.PhotoMeUrl);
+        result.Links = _mapper.Map<List<SocialLinkViewModel>>(info.SocialLinks);
+        result.Skills = _mapper.Map<List<SkillViewModel>>(info.Skills);
+        result.Experiences = _mapper.Map<List<ExperienceViewModel>>(info.Experiences);
+        result.Educations = _mapper.Map<List<EducationViewModel>>(info.Educations);
+        result.Certificates = _mapper.Map<List<CertificateViewModel>>(info.Certificates);
+
+        if (info.Projects != null && info.Projects.Any())
+        {
+            foreach (var project in info.Projects)
+            {
+                project.PhotoProjectUrl = ConvertingPhoto(project.PhotoProjectUrl);
+
+            }
+        }
+
+        result.Projects = _mapper.Map<List<ProjectViewModel>>(info.Projects);
+
+        return result;
+    }
+
+    private string ConvertingPhoto(string namePhoto)
+    {
+        string photoFolderPath = "wwwroot/images";
+
+        string mePhotoFilePath = Path.Combine(photoFolderPath, namePhoto);
 
         if (File.Exists(mePhotoFilePath))
         {
             byte[] photoBytes = File.ReadAllBytes(mePhotoFilePath);
-            base64MePhoto = Convert.ToBase64String(photoBytes);
+            string base64Photo = Convert.ToBase64String(photoBytes);
+
+            return base64Photo;
         }
         else
         {
             throw new ArgumentException("Photo not found!");
         }
-
-        var result = _mapper.Map<AboutMeViewModel>(info);
-        result.PhotoMeUrl = base64MePhoto;
-        result.Links = _mapper.Map<List<SocialLinkViewModel>>(info.SocialLinks);
-        result.Skills = _mapper.Map<List<SkillViewModel>>(info.Skills);
-        result.Projects = _mapper.Map<List<ProjectViewModel>>(info.Projects);
-        result.Experiences = _mapper.Map<List<ExperienceViewModel>>(info.Experiences);
-        result.Educations = _mapper.Map<List<EducationViewModel>>(info.Educations);
-        result.Certificates = _mapper.Map<List<CertificateViewModel>>(info.Certificates);
-
-        return result;
     }
 }

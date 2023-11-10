@@ -30,8 +30,4 @@
     <ProjectReference Include="..\MyPortfolio.Core\MyPortfolio.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\images\" />
-  </ItemGroup>
-
 </Project>

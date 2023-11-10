@@ -44,6 +44,7 @@ public class AddProjectCommandHandler : IRequestHandler<AddProjectCommand, Unit>
 
             project.PhotoProjectUrl = fileName;
 
+            _context.Projects.Add(project);
             await _context.SaveChangesAsync();
             await transaction.CommitAsync();
 
