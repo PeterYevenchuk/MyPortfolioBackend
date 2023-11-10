@@ -1,7 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using MyPortfolio.Core.Certificates.Change;
 using MyPortfolio.Core.Certificates.Post;
+using MyPortfolio.Core.Educations.Change;
 using MyPortfolio.Core.Educations.Save;
+using MyPortfolio.Core.Experiences.Change;
 using MyPortfolio.Core.Experiences.Save;
 using MyPortfolio.Core.InfoAboutMe.ChangeInfo;
 using MyPortfolio.Core.Projects.Save;
@@ -74,6 +77,30 @@ public class AdminController : ControllerBase
     {
         await _mediator.Send(request);
 
-        return Ok("Successful!");
+        return Ok("The information was changed successfully.");
+    }
+
+    [HttpPatch("change-certificate")]
+    public async Task<IActionResult> ChangeCertificate([FromForm] ChangeCertificateCommand request)
+    {
+        await _mediator.Send(request);
+
+        return Ok("The certificate was changed successfully.");
+    }
+
+    [HttpPatch("change-education")]
+    public async Task<IActionResult> ChangeEducation(ChangeEducationCommand request)
+    {
+        await _mediator.Send(request);
+
+        return Ok("The education was changed successfully.");
+    }
+
+    [HttpPatch("change-experiance")]
+    public async Task<IActionResult> ChangeExperiance(ChangeExperianceCommand request)
+    {
+        await _mediator.Send(request);
+
+        return Ok("The experiance was changed successfully.");
     }
 }
