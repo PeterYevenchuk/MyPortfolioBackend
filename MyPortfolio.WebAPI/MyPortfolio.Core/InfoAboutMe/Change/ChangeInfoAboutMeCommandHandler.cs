@@ -50,10 +50,10 @@ public class ChangeInfoAboutMeCommandHandler : IRequestHandler<ChangeInfoAboutMe
                     }
 
                     info.PhotoMeUrl = fileName;
-
-                    await _context.SaveChangesAsync();
-                    await transaction.CommitAsync();
                 }
+
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
 
                 return Unit.Value;
             }

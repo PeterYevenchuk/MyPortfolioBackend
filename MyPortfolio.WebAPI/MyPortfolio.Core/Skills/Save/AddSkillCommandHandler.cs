@@ -2,7 +2,6 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MyPortfolio.Core.Context;
-using MyPortfolio.Core.Experiences;
 using System.Data;
 
 namespace MyPortfolio.Core.Skills.Save;
