@@ -40,6 +40,15 @@ public class ChangeInfoAboutMeCommandHandler : IRequestHandler<ChangeInfoAboutMe
 
                 if (request.PhotoMe != null)
                 {
+                    if (!string.IsNullOrEmpty(info.PhotoMeUrl))
+                    {
+                        string oldFilePath = Path.Combine(photoFolderPath, info.PhotoMeUrl);
+                        if (File.Exists(oldFilePath))
+                        {
+                            File.Delete(oldFilePath);
+                        }
+                    }
+
                     string extension = Path.GetExtension(request.PhotoMe.FileName);
                     string fileName = $"{Guid.NewGuid().ToString()}{extension}";
                     string filePath = Path.Combine(photoFolderPath, fileName);

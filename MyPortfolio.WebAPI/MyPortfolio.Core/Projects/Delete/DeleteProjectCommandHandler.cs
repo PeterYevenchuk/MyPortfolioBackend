@@ -15,6 +15,8 @@ public class DeleteProjectCommandHandler : IRequestHandler<DeleteProjectCommand,
 
     public async Task<Unit> Handle(DeleteProjectCommand request, CancellationToken cancellationToken)
     {
+        string photoFolderPath = "wwwroot/images";
+
         using (var transaction = await _context.Database.BeginTransactionAsync())
         {
             try
@@ -24,6 +26,15 @@ public class DeleteProjectCommandHandler : IRequestHandler<DeleteProjectCommand,
                 if (info == null)
                 {
                     throw new ArgumentException("Not found!");
+                }
+
+                if (!string.IsNullOrEmpty(info.PhotoProjectUrl))
+                {
+                    string oldFilePath = Path.Combine(photoFolderPath, info.PhotoProjectUrl);
+                    if (File.Exists(oldFilePath))
+                    {
+                        File.Delete(oldFilePath);
+                    }
                 }
 
                 _context.Projects.Remove(info);

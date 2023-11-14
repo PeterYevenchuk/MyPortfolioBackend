@@ -35,6 +35,15 @@ public class ChangeProjectCommandHandler : IRequestHandler<ChangeProjectCommand,
 
             if (request.PhotoProjectUrl != null)
             {
+                if (!string.IsNullOrEmpty(info.PhotoProjectUrl))
+                {
+                    string oldFilePath = Path.Combine(photoFolderPath, info.PhotoProjectUrl);
+                    if (File.Exists(oldFilePath))
+                    {
+                        File.Delete(oldFilePath);
+                    }
+                }
+
                 string extension = Path.GetExtension(request.PhotoProjectUrl.FileName);
                 string fileName = $"{Guid.NewGuid().ToString()}{extension}";
                 string filePath = Path.Combine(photoFolderPath, fileName);
