@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyPortfolio.Core.Certificates.Change;
 using MyPortfolio.Core.Educations.Change;
@@ -21,6 +22,7 @@ public class AdminChangeController : ControllerBase
         _mediator = mediator;
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPatch("change-my-info")]
     public async Task<IActionResult> ChangeInfoAbouthMe([FromForm] ChangeInfoAboutMeCommand request)
     {
@@ -29,6 +31,7 @@ public class AdminChangeController : ControllerBase
         return Ok("The information was changed successfully.");
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPatch("change-certificate")]
     public async Task<IActionResult> ChangeCertificate([FromForm] ChangeCertificateCommand request)
     {
@@ -37,6 +40,7 @@ public class AdminChangeController : ControllerBase
         return Ok("The certificate was changed successfully.");
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPatch("change-education")]
     public async Task<IActionResult> ChangeEducation(ChangeEducationCommand request)
     {
@@ -45,6 +49,7 @@ public class AdminChangeController : ControllerBase
         return Ok("The education was changed successfully.");
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPatch("change-experiance")]
     public async Task<IActionResult> ChangeExperiance(ChangeExperianceCommand request)
     {
@@ -53,6 +58,7 @@ public class AdminChangeController : ControllerBase
         return Ok("The experiance was changed successfully.");
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPatch("change-project")]
     public async Task<IActionResult> ChangeProject([FromForm] ChangeProjectCommand request)
     {
@@ -61,6 +67,7 @@ public class AdminChangeController : ControllerBase
         return Ok("The project was changed successfully.");
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPatch("change-skill")]
     public async Task<IActionResult> ChangeSkill(ChangeSkillCommand request)
     {
@@ -69,6 +76,7 @@ public class AdminChangeController : ControllerBase
         return Ok("The skill was changed successfully.");
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPatch("change-social-link")]
     public async Task<IActionResult> ChangeSocialLink(ChangeSocialLinkCommand request)
     {

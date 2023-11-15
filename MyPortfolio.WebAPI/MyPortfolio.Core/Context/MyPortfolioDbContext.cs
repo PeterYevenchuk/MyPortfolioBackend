@@ -8,6 +8,7 @@ using MyPortfolio.Core.InfoAboutMe;
 using MyPortfolio.Core.Projects;
 using MyPortfolio.Core.Skills;
 using MyPortfolio.Core.SocialLinks;
+using MyPortfolio.Core.Users;
 
 namespace MyPortfolio.Core.Context;
 
@@ -22,6 +23,7 @@ public class MyPortfolioDbContext : DbContext
     public DbSet<SocialLink> SocialLinks { get; set; }
     public DbSet<Project> Projects { get; set; }
     public DbSet<Education> Educations { get; set; }
+    public DbSet<User> Users { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -34,6 +36,7 @@ public class MyPortfolioDbContext : DbContext
         modelBuilder.ApplyConfiguration(new SocialLinkConfiguration());
         modelBuilder.ApplyConfiguration(new ProjectConfiguration());
         modelBuilder.ApplyConfiguration(new EducationConfiguration());
+        modelBuilder.ApplyConfiguration(new UserConfiguration());
 
         DataSeeder.SeedData(modelBuilder);
     }

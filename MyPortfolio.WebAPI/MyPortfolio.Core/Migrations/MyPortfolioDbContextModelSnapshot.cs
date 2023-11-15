@@ -285,6 +285,50 @@ namespace MyPortfolio.Core.Migrations
                     b.ToTable("SocialLinks", "public");
                 });
 
+            modelBuilder.Entity("MyPortfolio.Core.Users.User", b =>
+                {
+                    b.Property<int>("UserID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("UserID"));
+
+                    b.Property<string>("Login")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Salt")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.HasKey("UserID");
+
+                    b.HasIndex("Login")
+                        .IsUnique();
+
+                    b.ToTable("Users", "public");
+
+                    b.HasData(
+                        new
+                        {
+                            UserID = 1,
+                            Login = "myportfolioadmin@gmail.com",
+                            Password = "WPGiUXw7hL1fwEY68x3pWDe/AtVHgo7bh0UaifjOexY=",
+                            Role = 0,
+                            Salt = "ex9mX76oqyQ27+pahx7ywg=="
+                        });
+                });
+
             modelBuilder.Entity("MyPortfolio.Core.Certificates.Certificate", b =>
                 {
                     b.HasOne("MyPortfolio.Core.InfoAboutMe.AboutMe", "AboutMe")

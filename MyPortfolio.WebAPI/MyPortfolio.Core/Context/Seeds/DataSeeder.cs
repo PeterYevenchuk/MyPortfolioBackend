@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyPortfolio.Core.InfoAboutMe;
+using MyPortfolio.Core.Users;
 
 namespace MyPortfolio.Core.Context.Seeds;
 
@@ -8,12 +9,13 @@ public class DataSeeder
     public static void SeedData(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<AboutMe>().HasData(
-            new AboutMe { 
-                AboutMeID = 1, 
-                Name = "Petro", 
-                Surname = "Yevenchuk", 
-                Age = 22, 
-                Location = "Ukraine", 
+            new AboutMe
+            {
+                AboutMeID = 1,
+                Name = "Petro",
+                Surname = "Yevenchuk",
+                Age = 22,
+                Location = "Ukraine",
                 Position = ".Net Developer",
                 PhotoMeUrl = "photo-me.jpg",
                 Description = "On my portfolio site, I present myself as a highly skilled " +
@@ -30,6 +32,17 @@ public class DataSeeder
                 "experience and skills, I am always ready to take on new challenges. On my portfolio " +
                 "site, you can learn more about my work achievements and examples of projects that I have " +
                 "successfully completed. I will be happy to cooperate."
+            }
+        );
+
+        modelBuilder.Entity<User>().HasData(
+            new User
+            {
+                UserID = 1,
+                Login = "myportfolioadmin@gmail.com",
+                Password = "WPGiUXw7hL1fwEY68x3pWDe/AtVHgo7bh0UaifjOexY=",
+                Salt = "ex9mX76oqyQ27+pahx7ywg==",
+                Role = Role.Admin
             }
         );
     }

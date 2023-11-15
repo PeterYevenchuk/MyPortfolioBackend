@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyPortfolio.Core.Certificates.Delete;
 using MyPortfolio.Core.Educations.Delete;
@@ -20,6 +21,7 @@ public class AdminDeleteController : ControllerBase
         _mediator = mediator;
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpDelete("delete-certificate/{id}")]
     public async Task<IActionResult> DeleteCertificate(int id)
     {
@@ -29,6 +31,7 @@ public class AdminDeleteController : ControllerBase
         return Ok("Certificate removed successfully.");
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpDelete("delete-education/{id}")]
     public async Task<IActionResult> DeleteEducation(int id)
     {
@@ -38,6 +41,7 @@ public class AdminDeleteController : ControllerBase
         return Ok("Education removed successfully.");
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpDelete("delete-experience/{id}")]
     public async Task<IActionResult> DeleteExperience(int id)
     {
@@ -47,6 +51,7 @@ public class AdminDeleteController : ControllerBase
         return Ok("Experience removed successfully.");
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpDelete("delete-project/{id}")]
     public async Task<IActionResult> DeleteProject(int id)
     {
@@ -56,6 +61,7 @@ public class AdminDeleteController : ControllerBase
         return Ok("Project removed successfully.");
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpDelete("delete-skill/{id}")]
     public async Task<IActionResult> DeleteSkill(int id)
     {
@@ -65,6 +71,7 @@ public class AdminDeleteController : ControllerBase
         return Ok("Skill removed successfully.");
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpDelete("delete-social-link/{id}")]
     public async Task<IActionResult> DeleteSocialLink(int id)
     {
