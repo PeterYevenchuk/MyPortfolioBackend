@@ -12,7 +12,11 @@ public class CertificateConfiguration : IEntityTypeConfiguration<Certificate>
 
         builder.HasKey(c => c.CertificateID); 
         builder.Property(c => c.CertificateID)
-            .ValueGeneratedOnAdd(); 
+            .ValueGeneratedOnAdd();
+
+        builder.Property(c => c.Name)
+            .HasMaxLength(255)
+            .IsRequired();
 
         builder.Property(c => c.CertificatePdf)
             .HasColumnType("bytea");

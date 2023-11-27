@@ -10,6 +10,8 @@ public class Certificate
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int CertificateID { get; set; }
 
+    public string Name { get; set; }
+
     public byte[] CertificatePdf { get; set; }
 
     public int AboutMeID { get; set; }

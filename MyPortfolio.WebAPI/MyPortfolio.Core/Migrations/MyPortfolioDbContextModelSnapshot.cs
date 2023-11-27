@@ -37,6 +37,11 @@ namespace MyPortfolio.Core.Migrations
                         .IsRequired()
                         .HasColumnType("bytea");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
                     b.HasKey("CertificateID");
 
                     b.HasIndex("AboutMeID");
@@ -62,7 +67,6 @@ namespace MyPortfolio.Core.Migrations
                         .HasColumnType("date");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("character varying(1000)");
 

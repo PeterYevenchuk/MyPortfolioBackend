@@ -36,6 +36,8 @@ public class ChangeCertificateCommandHandler : IRequestHandler<ChangeCertificate
                 }
             }
 
+            info.Name = request.Name ?? info.Name;
+
             await _context.SaveChangesAsync();
             await transaction.CommitAsync();
 

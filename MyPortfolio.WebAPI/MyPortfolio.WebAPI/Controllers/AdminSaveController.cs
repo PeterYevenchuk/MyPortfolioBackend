@@ -21,7 +21,7 @@ public class AdminSaveController : ControllerBase
         _mediator = mediator;
     }
 
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     [HttpPost("certificate")]
     public async Task<IActionResult> AddCertificate([FromForm] AddCertificateCommand request)
     {
@@ -30,7 +30,7 @@ public class AdminSaveController : ControllerBase
         return Ok("The certificate was created successfully.");
     }
 
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     [HttpPost("education")]
     public async Task<IActionResult> AddEducation(AddEducationCommand request)
     {
@@ -39,7 +39,7 @@ public class AdminSaveController : ControllerBase
         return Ok("The education was created successfully.");
     }
 
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     [HttpPost("experience")]
     public async Task<IActionResult> AddExperience(AddExperienceCommand request)
     {
@@ -48,7 +48,7 @@ public class AdminSaveController : ControllerBase
         return Ok("The experience was created successfully.");
     }
 
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     [HttpPost("project")]
     public async Task<IActionResult> AddProject([FromForm] AddProjectCommand request)
     {
@@ -57,7 +57,7 @@ public class AdminSaveController : ControllerBase
         return Ok("The project was created successfully.");
     }
 
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     [HttpPost("skill")]
     public async Task<IActionResult> AddSkill(AddSkillCommand request)
     {
@@ -66,7 +66,7 @@ public class AdminSaveController : ControllerBase
         return Ok("The skill was created successfully.");
     }
 
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     [HttpPost("social-link")]
     public async Task<IActionResult> AddSocialLinkl(AddSocialLinkCommand request)
     {

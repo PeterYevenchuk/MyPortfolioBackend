@@ -34,6 +34,7 @@ public class AddCertificateCommandHandler : IRequestHandler<AddCertificateComman
                 await request.CertificatePdf.CopyToAsync(ms);
                 certificate.CertificatePdf = ms.ToArray();
                 certificate.AboutMeID = request.AboutMeID;
+                certificate.Name = request.Name;
             }
 
             _context.Certificates.Add(certificate);

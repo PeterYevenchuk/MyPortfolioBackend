@@ -9,5 +9,7 @@ public class ChangeCertificateCommand : IRequest<Unit>
 
     public IFormFile? CertificatePdf { get; set; }
 
+    public string? Name { get; set; }
+
     public int AboutMeID { get; set; }
 }

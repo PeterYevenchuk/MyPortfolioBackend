@@ -34,8 +34,7 @@ public class EducationConfiguration : IEntityTypeConfiguration<Education>
             .HasColumnType("date"); 
 
         builder.Property(e => e.Description)
-            .HasMaxLength(1000) 
-            .IsRequired(); 
+            .HasMaxLength(1000); 
 
         builder.Property(e => e.AboutMeID); 
 

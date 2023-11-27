@@ -14,7 +14,7 @@ public class AddEducationCommand : IRequest<Unit>
 
     public DateOnly? DateFinish { get; set; }
 
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     public int AboutMeID { get; set; }
 }
